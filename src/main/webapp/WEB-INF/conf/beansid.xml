@@ -9,7 +9,9 @@
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     
     <bean id="printSvcDao" class="com.app.home.printsvc.dao.PrintSvcDAOImpl">
-		
+	</bean>
+	
+	<bean id="printSvcLogic" class="com.app.home.printsvc.business.PrintSvcLogic">
 	</bean>
     
 </beans>

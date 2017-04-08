@@ -1,7 +1,9 @@
 package com.app.home.printsvc.dao;
 
+import com.app.vopackage.UserInfo;
+
 public interface PrintSvcDAO {
 
-	boolean validateUserName(String username, String password);
+	public UserInfo getUserProfile(String username) throws Exception;
 
 }
