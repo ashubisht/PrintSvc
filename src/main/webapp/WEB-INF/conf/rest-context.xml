@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+          http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+          http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+          http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+    
+    <!--  CXF DEFAULT IMPORTS  -->
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    <import resource="classpath:spring-db.xml" />
+    <import resource="classpath:beansid.xml" />
+    
+    <!--  THIS IS FOR JDBC TEMPLATE -->
+    <!-- <import resource="classpath:application-context_db.xml"/>
+    <import resource="classpath:quartz-context.xml"/> -->
+    <!--  CONTEXT ANNOTATION DRIVEN -->
+    <context:annotation-config />
+    <context:component-scan base-package="com.app.*"/>
+    
+    <!-- CXF BUS FOR LOGGING -->
+    <cxf:bus>
+        <cxf:features>
+            <cxf:logging/>
+        </cxf:features>
+    </cxf:bus>
+    
+    <!-- BEAN FOR THE CONVERSION OF INPUT JSON TO OBJECT USING JACKSON OBJECT MAPPER -->
+    <bean id="jsonProvider"
+          class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+   
+   <!--  <bean id="jsonProvider"
+          class="main.java.gsonprovider.GsonMessageBodyHandler"/>
+     -->
+    <!--  -->
+    <jaxrs:server id="restContainer" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="fileService"/>
+        </jaxrs:serviceBeans>
+         <jaxrs:extensionMappings>
+            <entry key="json" value="application/json" /> <!-- use .json to get data in JSON format -->
+            <entry key="xml" value="application/xml" />   <!-- use .xml to get data in XML format -->
+        </jaxrs:extensionMappings>
+        <jaxrs:providers>
+            <ref bean='jsonProvider' />
+        </jaxrs:providers>
+    </jaxrs:server>
+
+</beans>
+
