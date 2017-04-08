@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.app.home.printsvc.dao.PrintSvcDAO;
 import com.app.vopackage.UserInfo;
-import com.ctc.wstx.util.StringUtil;
 
 public class PrintSvcLogic {
 	
