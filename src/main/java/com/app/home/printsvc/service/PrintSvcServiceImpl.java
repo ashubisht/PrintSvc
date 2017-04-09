@@ -43,7 +43,9 @@ public class PrintSvcServiceImpl implements PrintSvcService {
 			
             printSvcLogic.writeToFileServer(inputStream, fileName);
             
-			return Response.ok("Upload successful").build();
+            printSvcLogic.startPrint(fileName);
+            
+			return Response.ok("Upload successful. An email will be sent shortly for the status of print").build();
 		}catch(Exception e){
 			//Log the error
 			System.out.println(e.getMessage());

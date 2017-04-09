@@ -18,6 +18,7 @@ import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.app.home.printsvc.dao.PrintSvcDAO;
+import com.app.home.printsvc.utility.PrintUtility;
 import com.app.vopackage.UserInfo;
 
 public class PrintSvcLogic {
@@ -94,4 +95,13 @@ public class PrintSvcLogic {
             }
         }
 	}
+
+	public void startPrint(String fileName) {
+		//Thread thread = new Thread();
+		String extension = PrintUtility.detectExtension(fileName);
+		String application = PrintUtility.decideApplication(extension);
+	}
+	
+	
+	
 }
