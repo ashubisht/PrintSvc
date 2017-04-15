@@ -70,13 +70,13 @@ public class PrintSvcLogic {
 		for(Attachment attachment : attachments){
 			DataHandler dataHandler = attachment.getDataHandler();
 			MultivaluedMap<String, String> multivaluedMap = attachment.getHeaders();
-			parseProperties(multivaluedMap, map, dataHandler);
+			parseFormProperties(multivaluedMap, map, dataHandler);
 		}
 		return map;
 	}
 	
 	
-	private void parseProperties(MultivaluedMap<String, String> multivaluedMap, Map<String, Object> formProperties, 
+	private void parseFormProperties(MultivaluedMap<String, String> multivaluedMap, Map<String, Object> formProperties, 
 			DataHandler dataHandler) throws Exception{
 		String[] contentDisposition = multivaluedMap.getFirst("Content-Disposition").split(";");
 		for (String contentMetaData : contentDisposition) {			 
@@ -97,9 +97,15 @@ public class PrintSvcLogic {
 	}
 
 	public void startPrint(String fileName) {
-		//Thread thread = new Thread();
-		String extension = PrintUtility.detectExtension(fileName);
-		String application = PrintUtility.decideApplication(extension);
+		try{
+			String extension = PrintUtility.detectExtension(fileName);
+			String application = PrintUtility.decideApplication(extension);
+			PrintUtility.invokePrintCommand(fileName, application);
+		}catch(Exception e){
+			//Log error
+			//Send mail
+		}
+		
 	}
 	
 	
