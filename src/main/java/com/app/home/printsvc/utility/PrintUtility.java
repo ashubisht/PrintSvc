@@ -1,12 +1,7 @@
 package com.app.home.printsvc.utility;
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 public class PrintUtility {
@@ -22,9 +17,10 @@ public class PrintUtility {
 	}
 	
 	public static String decideApplication(String extension) throws Exception{
-		Map<String, String> map = LoadProperties.getMapFromProperties("extToApp.properties");
-		String application = map.getOrDefault(extension, "unknown");		
-		return application;
+		//Map<String, String> map = LoadProperties.getMapFromProperties("extToApp.properties"); //start of spring
+		//String application = map.getOrDefault(extension, "unknown");	
+		return LoadProperties.loadProperties("extToApp.properties").getProperty(extension, "unknown");
+		
 	}
 	
 	public static void invokePrintCommand(String fileName, String application) throws Exception{

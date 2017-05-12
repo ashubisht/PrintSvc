@@ -17,6 +17,7 @@ public class InvokePrint extends Thread{
 			if(CollectionUtils.isNotEmpty(commandList)){
 				ProcessBuilder processBuilder = new ProcessBuilder(commandList);
 				Process process = processBuilder.start();
+				process.waitFor();
 				int value = process.exitValue();
 				System.out.println(value); //Log the value
 			}else{
@@ -26,6 +27,8 @@ public class InvokePrint extends Thread{
 		}catch(Exception e){
 			//Log error
 			//Send mail
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	

@@ -17,7 +17,9 @@ import org.apache.cxf.helpers.IOUtils;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.app.home.printsvc.constants.PrintSvcConstants;
 import com.app.home.printsvc.dao.PrintSvcDAO;
+import com.app.home.printsvc.utility.InvokePing;
 import com.app.home.printsvc.utility.PrintUtility;
 import com.app.vopackage.UserInfo;
 
@@ -100,7 +102,15 @@ public class PrintSvcLogic {
 		try{
 			String extension = PrintUtility.detectExtension(fileName);
 			String application = PrintUtility.decideApplication(extension);
-			PrintUtility.invokePrintCommand(fileName, application);
+			String availability = InvokePing.runPingCommand();
+			if(availability.equals(PrintSvcConstants.REACHABLE)){
+				//Add to logs
+				//Add to DB
+				PrintUtility.invokePrintCommand(fileName, application);
+			}else{
+				//Add to logs
+				//Add to DB
+			}
 		}catch(Exception e){
 			//Log error
 			//Send mail
