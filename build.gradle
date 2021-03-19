@@ -61,7 +61,7 @@ dependencies {
 				compile 'org.springframework:spring-web:4.2.4.RELEASE'
 				compile 'org.springframework:spring-jdbc:4.2.4.RELEASE'
 				compile 'org.apache.cxf:cxf-rt-frontend-jaxws:3.0.0-milestone1'
-				compile 'org.apache.cxf:cxf-rt-frontend-jaxrs:3.0.0-milestone1'			
+				compile 'org.apache.cxf:cxf-rt-frontend-jaxrs:3.4.3'			
 				compile 'org.apache.cxf:cxf-rt-transports-http:3.0.0-milestone1'			
 				compile 'org.apache.cxf:cxf-rt-rs-client:3.0.0-milestone1'
 				compile 'org.apache.cxf:cxf-rt-rs-service-description:3.0.0-milestone1'
