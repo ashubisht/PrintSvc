@@ -58,7 +58,7 @@ dependencies {
 				compile 'org.springframework:spring-context:4.2.4.RELEASE'			
 				compile 'org.springframework:spring-core:4.2.4.RELEASE'			
 				compile 'org.springframework:spring-aop:4.2.4.RELEASE'
-				compile 'org.springframework:spring-web:4.2.4.RELEASE'
+				compile 'org.springframework:spring-web:5.3.6'
 				compile 'org.springframework:spring-jdbc:4.2.4.RELEASE'
 				compile 'org.apache.cxf:cxf-rt-frontend-jaxws:3.0.0-milestone1'
 				compile 'org.apache.cxf:cxf-rt-frontend-jaxrs:3.0.0-milestone1'			
